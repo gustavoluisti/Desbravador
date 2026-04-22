@@ -16,3 +16,7 @@ export function getUserRepos(login: string) {
     `/users/${login}/repos?sort=stars&direction=desc&per_page=10`
   );
 }
+
+export function getRepoDetails(owner: string, repo: string) {
+  return githubFetch(`/repos/${owner}/${repo}`);
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { GitHubRepoDetails } from "@/types/github";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
@@ -24,11 +25,7 @@ export function RepositoryList({
       );
     }
 
-    if (sortBy === "name") {
-      return reposCopy.sort((a, b) => a.name.localeCompare(b.name));
-    }
-
-    return reposCopy;
+    return reposCopy.sort((a, b) => a.name.localeCompare(b.name));
   }, [repos, sortBy]);
 
   if (!sortedRepos.length) {
@@ -66,43 +63,41 @@ export function RepositoryList({
       <Row xs={1} lg={2} className="g-3">
         {sortedRepos.map((repo) => (
           <Col key={repo.id}>
-            <Card className="h-100 shadow-sm repo-card">
-              <Card.Body>
-                <Card.Title className="h5 mb-2">
-                  <a
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-decoration-none"
-                  >
+            <Link
+              href={`/github/${repo.owner.login}/${repo.name}`}
+              className="text-decoration-none"
+            >
+              <Card className="h-100 shadow-sm repo-card">
+                <Card.Body>
+                  <Card.Title className="h5 mb-2">
                     {repo.name}
-                  </a>
-                </Card.Title>
+                  </Card.Title>
 
-                {repo.description && (
-                  <Card.Text className="text-muted small mb-2">
-                    {repo.description}
-                  </Card.Text>
-                )}
-
-                <div className="d-flex flex-wrap gap-3 small">
-                  {repo.language && (
-                    <span className="text-info">
-                      <span className="me-1">●</span>
-                      {repo.language}
-                    </span>
+                  {repo.description && (
+                    <Card.Text className="text-muted small mb-2">
+                      {repo.description}
+                    </Card.Text>
                   )}
 
-                  <span className="text-warning">
-                    ★ {repo.stargazers_count}
-                  </span>
+                  <div className="d-flex flex-wrap gap-3 small">
+                    {repo.language && (
+                      <span className="text-info">
+                        <span className="me-1">●</span>
+                        {repo.language}
+                      </span>
+                    )}
 
-                  <span className="text-secondary">
-                    ♺ {repo.forks_count}
-                  </span>
-                </div>
-              </Card.Body>
-            </Card>
+                    <span className="text-warning">
+                      ★ {repo.stargazers_count}
+                    </span>
+
+                    <span className="text-secondary">
+                      ♺ {repo.forks_count}
+                    </span>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
         ))}
       </Row>

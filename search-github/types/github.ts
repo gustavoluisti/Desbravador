@@ -10,15 +10,23 @@ export interface GitHubUserDetails {
 }
 
 export interface GitHubRepoDetails {
-    id: number;
-    full_name: string;
-    html_url: string;
-    private: boolean;
-    description: string;
-    stargazers_count: number;
-    forks_count: number;
-    name: string;
-    language: string;
+  id: number;
+  full_name: string;
+  html_url: string;
+  private: boolean;
+  description: string;
+  stargazers_count: number;
+  forks_count: number;
+  name: string;
+  language: string;
+  watchers_count: number;
+  open_issues_count: number;
+  default_branch: string;
+  visibility: string;
+  owner: {
+    login: string;
+    avatar_url: string;
+  };
 }
 
 export interface UserProfileProps {
