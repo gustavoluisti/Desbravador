@@ -23,6 +23,11 @@ export interface GitHubRepoDetails {
   open_issues_count: number;
   default_branch: string;
   visibility: string;
+  license: {
+    key: string;
+    name: string;
+  } | null;
+  topics: string[];
   owner: {
     login: string;
     avatar_url: string;

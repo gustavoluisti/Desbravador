@@ -18,5 +18,5 @@ export function getUserRepos(login: string) {
 }
 
 export function getRepoDetails(owner: string, repo: string) {
-  return githubFetch(`/repos/${owner}/${repo}`);
+  return githubFetch<GitHubRepoDetails>(`/repos/${owner}/${repo}`);
 }
