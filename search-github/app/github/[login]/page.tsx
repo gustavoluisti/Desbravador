@@ -1,4 +1,3 @@
-// app/github/[login]/page.tsx
 import { notFound } from "next/navigation";
 import { Header } from "@/app/components/Header/Header";
 import { RepositoryList } from "@/app/components/RepositoryList/RepositoryList";

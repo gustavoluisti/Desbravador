@@ -1,17 +1,7 @@
 "use client";
 
+import { UserProfileProps } from "@/types/github";
 import { Card, Row, Col, Badge, Container } from "react-bootstrap";
-
-interface UserProfileProps {
-  login: string;
-  avatar_url: string;
-  name?: string;
-  email?: string;
-  followers: number;
-  following: number;
-  public_repos: number;
-  location?: string;
-}
 
 export function UserProfile({ user }: { user: UserProfileProps }) {
   return (

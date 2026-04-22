@@ -20,3 +20,14 @@ export interface GitHubRepoDetails {
     name: string;
     language: string;
 }
+
+export interface UserProfileProps {
+  login: string;
+  avatar_url: string;
+  name?: string;
+  email?: string;
+  followers: number;
+  following: number;
+  public_repos: number;
+  location?: string;
+}
