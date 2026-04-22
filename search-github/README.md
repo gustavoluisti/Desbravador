@@ -29,3 +29,5 @@ pnpm install
 npm run dev
 
 http://localhost:3000
+
+**Demo:** https://search-repositories-vaga.fly.dev/
