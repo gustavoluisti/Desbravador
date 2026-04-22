@@ -30,4 +30,5 @@ export interface UserProfileProps {
   following: number;
   public_repos: number;
   location?: string;
+  bio?: string;
 }

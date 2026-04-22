@@ -33,6 +33,9 @@ export function UserProfile({ user }: { user: UserProfileProps }) {
               <p className="mb-2">
                 <strong>Email:</strong> {user.email || "Não disponível"}
               </p>
+              <p className="mb-2">
+                <strong>Bio:</strong> {user.bio || "Não disponível"}
+              </p>
 
               <Row className="mt-3">
                 <Col xs={6} sm={3} className="mb-2">
