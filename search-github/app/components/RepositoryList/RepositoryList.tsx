@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { GitHubRepoDetails } from "@/types/github";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
@@ -7,10 +8,30 @@ interface RepositoryListProps {
   repos?: GitHubRepoDetails[];
 }
 
+type SortType = "stars" | "name";
+
 export function RepositoryList({
   repos = [],
 }: Readonly<RepositoryListProps>) {
-  if (!repos.length) {
+  const [sortBy, setSortBy] = useState<SortType>("stars");
+
+  const sortedRepos = useMemo(() => {
+    const reposCopy = [...repos];
+
+    if (sortBy === "stars") {
+      return reposCopy.sort(
+        (a, b) => b.stargazers_count - a.stargazers_count
+      );
+    }
+
+    if (sortBy === "name") {
+      return reposCopy.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    return reposCopy;
+  }, [repos, sortBy]);
+
+  if (!sortedRepos.length) {
     return <Container>Nenhum repositório encontrado.</Container>;
   }
 
@@ -20,19 +41,30 @@ export function RepositoryList({
 
       <div className="d-flex flex-wrap gap-2 mb-3 align-items-center">
         <span className="text-muted me-2">Ordenar por:</span>
-        <Button variant="dark" size="sm">
+
+        <Button
+          variant={sortBy === "stars" ? "dark" : "outline-dark"}
+          size="sm"
+          onClick={() => setSortBy("stars")}
+        >
           Estrelas
         </Button>
-        <Button variant="outline-primary" size="sm">
+
+        <Button
+          variant={sortBy === "name" ? "primary" : "outline-primary"}
+          size="sm"
+          onClick={() => setSortBy("name")}
+        >
           Nome
         </Button>
+
         <span className="ms-auto text-muted small">
-          {repos.length} repositórios
+          {sortedRepos.length} repositórios
         </span>
       </div>
 
       <Row xs={1} lg={2} className="g-3">
-        {repos.map((repo) => (
+        {sortedRepos.map((repo) => (
           <Col key={repo.id}>
             <Card className="h-100 shadow-sm repo-card">
               <Card.Body>

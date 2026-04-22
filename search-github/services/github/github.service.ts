@@ -13,6 +13,6 @@ export function getUser(login: string) {
 
 export function getUserRepos(login: string) {
   return githubFetch<GitHubRepoDetails[]>(
-    `/users/${login}/repos?sort=updated&per_page=10`
+    `/users/${login}/repos?sort=stars&direction=desc&per_page=10`
   );
 }
