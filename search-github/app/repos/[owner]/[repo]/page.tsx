@@ -26,7 +26,10 @@ export default async function RepoPage({ params }: PageProps) {
       <Header />
 
       <div className="container-fluid px-3 px-lg-4 py-4">
-        <Link href="/" className="btn btn-outline-secondary btn-sm mb-3">
+        <Link
+          href={`/github/${owner}`}
+          className="btn btn-outline-secondary btn-sm mb-3"
+        >
           ← Voltar
         </Link>
 
