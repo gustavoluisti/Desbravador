@@ -64,7 +64,7 @@ export function RepositoryList({
         {sortedRepos.map((repo) => (
           <Col key={repo.id}>
             <Link
-              href={`/github/${repo.owner.login}/${repo.name}`}
+              href={`/repos/${repo.owner.login}/${repo.name}`}
               className="text-decoration-none"
             >
               <Card className="h-100 shadow-sm repo-card">
